@@ -20,9 +20,6 @@ var data string
 //go:embed style.css
 var styleData []byte
 
-//go:embed reload.js
-var reloadData []byte
-
 //go:embed script.js
 var scriptData []byte
 

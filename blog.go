@@ -80,12 +80,10 @@ func (s *Section) Write(base string) error {
 		Title:   s.Title,
 		Section: s,
 
-		Domain: domain,
-		Track:  track,
-		CSS:    style,
-		JS:     script,
-		Logo:   LOGO,
-		Icon:   Icon,
+		CSS:  style,
+		JS:   script,
+		Logo: LOGO,
+		Icon: Icon,
 	})
 }
 
@@ -143,13 +141,10 @@ func (ls Sections) Write(base string) error {
 	return writeBlogFile(base, Blog{
 		Title:    "vince- Blog",
 		Sections: ls,
-
-		Domain: domain,
-		Track:  track,
-		CSS:    style,
-		JS:     script,
-		Logo:   LOGO,
-		Icon:   Icon,
+		CSS:      style,
+		JS:       script,
+		Logo:     LOGO,
+		Icon:     Icon,
 	})
 }
 
@@ -183,13 +178,10 @@ func (p *Post) Write(base string) error {
 	return writeBlogFile(filepath.Join(base, p.URL), Blog{
 		Title: p.Title,
 		Post:  p,
-
-		Domain: domain,
-		Track:  track,
-		CSS:    style,
-		JS:     script,
-		Logo:   LOGO,
-		Icon:   Icon,
+		CSS:   style,
+		JS:    script,
+		Logo:  LOGO,
+		Icon:  Icon,
 	})
 }
 

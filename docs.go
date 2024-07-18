@@ -38,12 +38,10 @@ func buildDocs(w io.Writer, dir string) error {
 	}
 	var b bytes.Buffer
 	m := Model{
-		Domain: domain,
-		Track:  track,
-		CSS:    style,
-		JS:     script,
-		Logo:   LOGO,
-		Icon:   Icon,
+		CSS:  style,
+		JS:   script,
+		Logo: LOGO,
+		Icon: Icon,
 	}
 	var positions []int
 	seen := make(map[string]struct{})
