@@ -21,11 +21,14 @@ type Page struct {
 	Excerpt     template.HTML `json:"excerpt,omitempty"`
 	Permalink   string        `json:"permalink,omitempty"`
 	Date        time.Time     `json:"date,omitempty"`
-	Next        *Page         `json:"-"`
-	Previous    *Page         `json:"-"`
-	Index       int           `json:"index,omitempty"`
-	Source      string        `json:"-"`
-	Content     template.HTML `json:"-"`
+	Author      struct {
+		Name string `json:"name,omitempty"`
+	} `json:"author,omitempty"`
+	Next     *Page         `json:"-"`
+	Previous *Page         `json:"-"`
+	Index    int           `json:"index,omitempty"`
+	Source   string        `json:"-"`
+	Content  template.HTML `json:"-"`
 }
 
 func (p *Page) Read() {
