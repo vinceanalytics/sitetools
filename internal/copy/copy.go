@@ -1,6 +1,7 @@
 package copy
 
 import (
+	"fmt"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -20,10 +21,12 @@ func Copy(dst string) error {
 		if err != nil {
 			return err
 		}
+		fmt.Println("=>", dstPath)
 		return os.WriteFile(dstPath, data, 0600)
 	})
 	if err != nil {
 		return err
 	}
+	fmt.Println("=>", "CNAME")
 	return os.WriteFile("CNAME", data.Cname, 0600)
 }
