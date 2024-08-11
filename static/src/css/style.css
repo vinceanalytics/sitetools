@@ -147,3 +147,50 @@ input[type="range"]::-moz-focus-outer {
 [x-cloak] {
   display: none;
 }
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --beige: #f8f5ed;
+  --green: #6ece9d;
+  --yellow: #ffda6e;
+  --orange: #f7a66b;
+  --red: #e87b7b;
+  --god: #FFCF00;
+  --padding-extra-large: 192px;
+  --padding-large: 128px;
+  --padding-medium: 64px;
+  --padding-small: 32px;
+  --padding-extra-small: 16px;
+  --border-radius-large: 24px;
+  --border-radius-medium: 12px;
+  --border-radius-small: 6px;
+  --mask: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%);
+  --header-height: 88px;
+  --color-primary: var(--black);
+  --color-secondary: #707070;
+  --color-background-primary: var(--white);
+  --color-background-primary-glass: rgba(255, 255, 255, .4);
+  --color-background-secondary: var(--beige);
+  --color-background-elevation: rgba(0, 0, 0, .04);
+  --color-gradient-bottom: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+  color-scheme: light;
+}
+
+button,
+.button {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 48px;
+  padding: 0 24px;
+  border-radius: var(--border-radius-medium);
+  outline: none;
+  background-color: var(--god);
+  color: var(--black);
+  font-weight: 500;
+  font-size: 18px;
+  white-space: nowrap
+}
