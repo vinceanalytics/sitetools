@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"cmp"
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"log/slog"
 	"os"
@@ -22,13 +23,26 @@ type Page struct {
 	Permalink   string        `json:"permalink,omitempty"`
 	Date        time.Time     `json:"date,omitempty"`
 	Author      struct {
-		Name string `json:"name,omitempty"`
+		Name    string `json:"name,omitempty"`
+		Twitter string `json:"twitter,omitempty"`
 	} `json:"author,omitempty"`
 	Next     *Page         `json:"-"`
 	Previous *Page         `json:"-"`
 	Index    int           `json:"index,omitempty"`
 	Source   string        `json:"-"`
 	Content  template.HTML `json:"-"`
+}
+
+func (p *Page) Render(ctx map[string]any, out string, tpl *template.Template) {
+	base := filepath.Join(out, filepath.Dir(p.Permalink))
+	os.MkdirAll(base, 0755)
+	b := new(bytes.Buffer)
+	ctx["page"] = p
+	fail(tpl.Execute(b, ctx), "rendering page", "source", p.Source)
+	dest := filepath.Join(out, p.Permalink+".html")
+	fmt.Println("=>", dest)
+	fail(os.WriteFile(dest, b.Bytes(), 0600), "writing output file", "dest", dest)
+
 }
 
 func (p *Page) Read() {
@@ -39,7 +53,7 @@ func (p *Page) Read() {
 	p.Content = template.HTML(markdown.ToHTML(md, nil, nil))
 
 	// set excerpt
-	ex, _, _ := bytes.Cut(md, []byte("\n"))
+	ex, _, _ := bytes.Cut(md, []byte("\n\n"))
 	p.Excerpt = template.HTML(markdown.ToHTML(ex, nil, nil))
 }
 
@@ -58,6 +72,12 @@ func Compare(a, b *Page) int {
 
 type Pages []*Page
 
+func (p Pages) Render(m map[string]any, out string, tpl *template.Template) {
+	for i := range p {
+		p[i].Render(m, out, tpl)
+	}
+}
+
 func (p Pages) Read() {
 	for i := range p {
 		p[i].Read()
@@ -66,6 +86,16 @@ func (p Pages) Read() {
 }
 
 type LayoutData map[string]Pages
+
+func (layout LayoutData) Render(out string, tpl map[string]*template.Template) {
+	m := make(map[string]any)
+	for k, v := range layout {
+		m[k] = v
+	}
+	for k, v := range layout {
+		v.Render(m, out, tpl[k])
+	}
+}
 
 func Build(path string) LayoutData {
 	pages, err := load(path)
@@ -83,7 +113,7 @@ func load(path string) ([]Pages, error) {
 	if err != nil {
 		return nil, err
 	}
-	r := make([]Pages, len(dir))
+	r := make([]Pages, 0, len(dir))
 	for i := range dir {
 		e := dir[i]
 		if !e.IsDir() {
@@ -94,6 +124,9 @@ func load(path string) ([]Pages, error) {
 		child, err := os.ReadDir(path)
 		if err != nil {
 			return nil, err
+		}
+		if len(child) == 0 {
+			continue
 		}
 		pages := make(Pages, 0, len(child))
 		layout := e.Name()
@@ -117,7 +150,10 @@ func load(path string) ([]Pages, error) {
 				Permalink: permalink,
 			})
 		}
-		r[i] = pages
+		if len(pages) == 0 {
+			continue
+		}
+		r = append(r, pages)
 	}
 	return r, nil
 }
