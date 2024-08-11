@@ -157,6 +157,7 @@ input[type="range"]::-moz-focus-outer {
   --orange: #f7a66b;
   --red: #e87b7b;
   --god: #FFCF00;
+  --god-light: #ffd0008a;
   --padding-extra-large: 192px;
   --padding-large: 128px;
   --padding-medium: 64px;
