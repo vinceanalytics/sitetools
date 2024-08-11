@@ -1,4 +1,7 @@
 module.exports = {
+  content: [
+    "../data/templates/**/*.html",
+  ],
   theme: {
     container: {
       center: true,

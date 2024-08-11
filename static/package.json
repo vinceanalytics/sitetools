@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "css": "tailwindcss -i src/css/style.css -o ../data/static/css/style.css --minify"
+    "css": "tailwindcss -i src/css/style.css -o ../data/assets/css/style.css --minify"
   },
   "author": "",
   "license": "ISC",

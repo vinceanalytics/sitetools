@@ -1,0 +1,57 @@
+{{define "main"}}
+<article class="container max-w-screen-sm mt-16">
+    <a class="text-indigo-600 uppercase text-sm tracking-wide font-black" href="/blog" onclick="if (document.referrer === '{{  absolute_url }}' || document.referrer === '{{ absolute_url }}') {
+        history.back(); return false; } else { return true; }">
+        &larr; All posts
+    </a>
+    <h1
+        class="text-3xl mt-2 tracking-tight leading-10 font-extrabold text-gray-900 sm:text-4xl sm:leading-none md:text-5xl">
+        {{ .page.title }}</h1>
+
+    <div class="mt-2">
+        <time class="uppercase text-xs text-gray-500 font-bold">{{ .page.date}}</time>
+        <span class="text-xs uppercase font-bold text-gray-500">• Written by <a
+                class="uppercase text-xs text-indigo-600 font-bold hover:underline"
+                href="https://twitter.com/{{author.twitter}}">{{ .page.author.name }}</a></span>
+    </div>
+
+
+    <div class="mt-8 prose">
+        {{ .page.content }}
+    </div>
+
+    <div class="mt-8">
+        <span class="text-xs uppercase font-bold text-gray-500">Written by <a
+                class="uppercase text-xs text-indigo-600 font-bold hover:underline"
+                href="https://twitter.com/{{author.twitter}}">{{ .page.author.name }}</a></span>
+    </div>
+</article>
+
+<hr class="w-full bg-gray-100 my-12" style="height: 1px;">
+
+
+
+<hr class="w-full bg-gray-100 my-24" style="height: 1px;">
+
+<div class="container max-w-screen-sm mb-24 flex justify-between">
+    <div class="w-1/2">
+        {{if .page.next.url }}
+        <div class="text-indigo-500 uppercase text-sm tracking-wide font-black mb-2" href="{{ .site.baseurl }}">Next
+            post
+        </div>
+        <a href="{{.page.next.url}}">
+            <h3 class="text-2xl font-black">{{.page.next.title}}</h3>
+        </a>
+        {% endif %}
+    </div>
+    <div class="w-1/2 text-right">
+        {{ if .page.previous.url }}
+        <div class="text-indigo-500 uppercase text-sm tracking-wide font-black mb-2" href="{{ .site.baseurl }}">Previous
+            post</div>
+        <a href="{{.page.previous.url }}">
+            <h3 class="text-2xl font-black">{{.page.previous.title}}</h3>
+        </a>
+        {{ end }}
+    </div>
+</div>
+{{end}}
