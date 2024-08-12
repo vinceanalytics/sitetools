@@ -26,7 +26,7 @@ func main() {
 
 	pgx.Render(dst, r)
 
-	_ = idx
+	pgx.RenderSpecial(dst, build.SpecialPages(), idx)
 	if *s {
 		serve(dst)
 	}

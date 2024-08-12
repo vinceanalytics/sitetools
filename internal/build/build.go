@@ -99,6 +99,16 @@ func (layout LayoutData) Render(out string, tpl map[string]*template.Template) {
 	}
 }
 
+func (layout LayoutData) RenderSpecial(out string, pages []*Page, tpl map[string]*template.Template) {
+	m := make(Context)
+	for k, v := range layout {
+		m[k] = v
+	}
+	for i := range pages {
+		pages[i].Render(m, out, tpl[pages[i].Layout])
+	}
+}
+
 type Context map[string]any
 
 func (ctx Context) AbsoluteURL(args ...string) string {
@@ -189,5 +199,16 @@ func fail(err error, msg string, args ...any) {
 	if err != nil {
 		slog.Error(msg, append(args, slog.String("err", err.Error()))...)
 		os.Exit(1)
+	}
+}
+
+func SpecialPages() []*Page {
+	return []*Page{
+		{
+			Layout:      "page",
+			Title:       "Vince Analytics",
+			Description: "Vince is a cloud native, self hosted, privacy-first alternative to google analytics",
+			Permalink:   "/",
+		},
 	}
 }
