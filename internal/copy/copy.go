@@ -27,6 +27,7 @@ func Copy(dst string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println("=>", "CNAME")
-	return os.WriteFile("CNAME", data.Cname, 0600)
+	cname := filepath.Join(dst, "CNAME")
+	fmt.Println("=>", cname)
+	return os.WriteFile(cname, data.Cname, 0600)
 }
