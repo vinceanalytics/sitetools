@@ -23,7 +23,7 @@ type Page struct {
 	Description string        `json:"description,omitempty"`
 	Excerpt     template.HTML `json:"excerpt,omitempty"`
 	Permalink   string        `json:"permalink,omitempty"`
-	Date        time.Time     `json:"date,omitempty"`
+	Date        Date          `json:"date,omitempty"`
 	Author      struct {
 		Name    string `json:"name,omitempty"`
 		Twitter string `json:"twitter,omitempty"`
@@ -33,6 +33,31 @@ type Page struct {
 	Index    int           `json:"index,omitempty"`
 	Source   string        `json:"-"`
 	Content  template.HTML `json:"-"`
+}
+
+type Date struct {
+	time.Time
+}
+
+func (d *Date) UnmarshalJSON(data []byte) error {
+	var s string
+	if err := json.Unmarshal(data, &s); err != nil {
+		return err
+	}
+	ts, err := time.Parse(time.DateOnly, s)
+	if err != nil {
+		return err
+	}
+	d.Time = ts
+	return nil
+}
+
+func (d *Date) Timestamp() string {
+	return d.String()
+}
+
+func (d *Date) Nice() string {
+	return d.Format("Jan 02, 2006")
 }
 
 func (p *Page) Render(ctx Context, out string, tpl *template.Template) {
@@ -66,7 +91,7 @@ func (p *Page) URL() string {
 func Compare(a, b *Page) int {
 	if !a.Date.IsZero() || !b.Date.IsZero() {
 		// sort dated pages in descending order
-		return b.Date.Compare(a.Date)
+		return b.Date.Compare(a.Date.Time)
 	}
 	// normally sort in the order they appeared in the file system
 	return cmp.Compare(a.Index, b.Index)
@@ -159,7 +184,7 @@ func load(path string) ([]Pages, error) {
 		pages := make(Pages, 0, len(child))
 		layout := e.Name()
 		for j := range child {
-			ch := child[i]
+			ch := child[j]
 			if ch.IsDir() {
 				continue
 			}
@@ -209,6 +234,12 @@ func SpecialPages() []*Page {
 			Title:       "Vince Analytics",
 			Description: "Vince is a cloud native, self hosted, privacy-first alternative to google analytics",
 			Permalink:   "/",
+		},
+		{
+			Layout:      "post",
+			Title:       "Vince Analytics Blog",
+			Description: "Vince is a cloud native, self hosted, privacy-first alternative to google analytics",
+			Permalink:   "/blog",
 		},
 	}
 }

@@ -1,2 +1,18 @@
 {{define "main"}}
+<ul class="container max-w-screen-sm mt-12">
+    {{- range .post -}}
+    <li class="mt-16 list-reset">
+        <time class="uppercase text-xs text-gray-500 font-bold">{{ .Date.Nice }}</time>
+        <h2 class="mt-1 text-2xl tracking-tight font-extrabold text-gray-900 sm:leading-none md:text-3xl">
+            <a href="{{ .URL }}">{{ .Title }}</a>
+        </h2>
+        <div class="mt-6 post-content">{{ .Excerpt }}</div>
+        <div class="mt-10">
+            <a class="text-rose-600 uppercase text-sm tracking-wide font-black content-link" href="{{ .URL }}">Continue
+                reading -></a>
+        </div>
+    </li>
+    <hr class="w-full bg-gray-100 my-12" style="height: 1px;">
+    {{ end }}
+</ul>
 {{end}}
