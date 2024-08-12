@@ -4,12 +4,14 @@ import (
 	"bytes"
 	"cmp"
 	"encoding/json"
+	"flag"
 	"fmt"
 	"html/template"
 	"log/slog"
 	"os"
 	"path/filepath"
 	"slices"
+	"strings"
 	"time"
 
 	"github.com/gomarkdown/markdown"
@@ -33,7 +35,7 @@ type Page struct {
 	Content  template.HTML `json:"-"`
 }
 
-func (p *Page) Render(ctx map[string]any, out string, tpl *template.Template) {
+func (p *Page) Render(ctx Context, out string, tpl *template.Template) {
 	base := filepath.Join(out, filepath.Dir(p.Permalink))
 	os.MkdirAll(base, 0755)
 	b := new(bytes.Buffer)
@@ -72,7 +74,7 @@ func Compare(a, b *Page) int {
 
 type Pages []*Page
 
-func (p Pages) Render(m map[string]any, out string, tpl *template.Template) {
+func (p Pages) Render(m Context, out string, tpl *template.Template) {
 	for i := range p {
 		p[i].Render(m, out, tpl)
 	}
@@ -88,13 +90,29 @@ func (p Pages) Read() {
 type LayoutData map[string]Pages
 
 func (layout LayoutData) Render(out string, tpl map[string]*template.Template) {
-	m := make(map[string]any)
+	m := make(Context)
 	for k, v := range layout {
 		m[k] = v
 	}
 	for k, v := range layout {
 		v.Render(m, out, tpl[k])
 	}
+}
+
+type Context map[string]any
+
+func (ctx Context) AbsoluteURL(args ...string) string {
+	return absURL(args...)
+}
+
+var root = flag.String("url", "", "")
+
+func absURL(args ...string) string {
+	for i := range args {
+		args[i] = strings.TrimSpace(args[i])
+	}
+	a := strings.Join(args, "/")
+	return *root + a
 }
 
 func Build(path string) LayoutData {

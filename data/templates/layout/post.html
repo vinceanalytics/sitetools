@@ -1,6 +1,6 @@
 {{define "main"}}
 <article class="container max-w-screen-sm mt-16">
-    <a class="text-indigo-600 uppercase text-sm tracking-wide font-black" href="/blog" onclick="if (document.referrer === '{{  absolute_url }}' || document.referrer === '{{ absolute_url }}') {
+    <a class="text-indigo-600 uppercase text-sm tracking-wide font-black" href="/blog" onclick="if (document.referrer === '{{  .AbsoluteURL }}' || document.referrer === '{{ .AbsoluteURL }}') {
         history.back(); return false; } else { return true; }">
         &larr; All posts
     </a>
