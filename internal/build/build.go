@@ -36,12 +36,12 @@ type Page struct {
 }
 
 func (p *Page) Render(ctx Context, out string, tpl *template.Template) {
-	base := filepath.Join(out, filepath.Dir(p.Permalink))
+	base := filepath.Join(out, p.Permalink)
 	os.MkdirAll(base, 0755)
 	b := new(bytes.Buffer)
 	ctx["page"] = p
 	fail(tpl.Execute(b, ctx), "rendering page", "source", p.Source)
-	dest := filepath.Join(out, p.Permalink+".html")
+	dest := filepath.Join(base, "index.html")
 	fmt.Println("=>", dest)
 	fail(os.WriteFile(dest, b.Bytes(), 0600), "writing output file", "dest", dest)
 
