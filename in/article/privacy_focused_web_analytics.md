@@ -2,7 +2,7 @@
   "layout": "article",
   "title": "Privacy-first  website analytics",
   "description": "Vince provides cookie-less web analytics without collecting personal data and while respecting the privacy of website visitors.",
-  "permalink": "/data-policy"
+  "permalink": "/privacy-focused-web-analytics"
 }
 
 
