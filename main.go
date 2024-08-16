@@ -1,11 +1,15 @@
 package main
 
 import (
+	"context"
+	"encoding/json"
 	"flag"
+	"log"
 	"log/slog"
 	"net/http"
 	"os"
 
+	"github.com/google/go-github/v63/github"
 	"github.com/vinceanalytics/sitetools/internal/build"
 	assets "github.com/vinceanalytics/sitetools/internal/copy"
 	"github.com/vinceanalytics/sitetools/internal/render"
@@ -13,7 +17,11 @@ import (
 
 func main() {
 	s := flag.Bool("s", false, "")
+	rel := flag.Bool("r", false, "")
 	flag.Parse()
+	if *rel {
+		releases()
+	}
 	src := flag.Arg(0)
 	dst := flag.Arg(1)
 	err := assets.Copy(dst)
@@ -54,4 +62,19 @@ type wrap struct {
 func (w *wrap) WriteHeader(code int) {
 	w.code = code
 	w.ResponseWriter.WriteHeader(code)
+}
+
+func releases() {
+	client := github.NewClient(nil)
+	all, _, err := client.Repositories.ListReleases(
+		context.Background(),
+		"vinceanalytics",
+		"vince",
+		nil,
+	)
+	if err != nil {
+		log.Fatal("fetching releases", err)
+	}
+	data, _ := json.Marshal(all)
+	os.WriteFile("releases.json", data, 0600)
 }
