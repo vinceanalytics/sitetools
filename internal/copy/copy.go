@@ -1,6 +1,7 @@
 package copy
 
 import (
+	"errors"
 	"fmt"
 	"io/fs"
 	"os"
@@ -29,5 +30,10 @@ func Copy(dst string) error {
 	}
 	cname := filepath.Join(dst, "CNAME")
 	fmt.Println("=>", cname)
-	return os.WriteFile(cname, data.Cname, 0600)
+	install := filepath.Join(dst, "install.sh")
+	fmt.Println("=>", install)
+	return errors.Join(
+		os.WriteFile(cname, data.Cname, 0600),
+		os.WriteFile(install, data.Install, 0600),
+	)
 }
