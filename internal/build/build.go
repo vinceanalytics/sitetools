@@ -15,6 +15,7 @@ import (
 	"time"
 
 	"github.com/gomarkdown/markdown"
+	"github.com/google/go-github/v63/github"
 )
 
 type Page struct {
@@ -28,11 +29,12 @@ type Page struct {
 		Name    string `json:"name,omitempty"`
 		Twitter string `json:"twitter,omitempty"`
 	} `json:"author,omitempty"`
-	Next     *Page         `json:"-"`
-	Previous *Page         `json:"-"`
-	Index    int           `json:"index,omitempty"`
-	Source   string        `json:"-"`
-	Content  template.HTML `json:"-"`
+	Next     *Page                       `json:"-"`
+	Previous *Page                       `json:"-"`
+	Index    int                         `json:"index,omitempty"`
+	Source   string                      `json:"-"`
+	Content  template.HTML               `json:"-"`
+	Releases []*github.RepositoryRelease `json:"-"`
 }
 
 type Date struct {
@@ -162,6 +164,11 @@ func Build(path string) LayoutData {
 }
 
 func load(path string) ([]Pages, error) {
+	var releases []*github.RepositoryRelease
+	if data, err := os.ReadFile("releases.json"); err == nil {
+		json.Unmarshal(data, &releases)
+		slog.Info("found releases", "count", len(releases))
+	}
 	dir, err := os.ReadDir(path)
 	if err != nil {
 		return nil, err
@@ -201,6 +208,7 @@ func load(path string) ([]Pages, error) {
 				Index:     j,
 				Source:    full,
 				Permalink: permalink,
+				Releases:  releases,
 			})
 		}
 		if len(pages) == 0 {
