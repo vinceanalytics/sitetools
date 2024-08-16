@@ -164,11 +164,6 @@ func Build(path string) LayoutData {
 }
 
 func load(path string) ([]Pages, error) {
-	var releases []*github.RepositoryRelease
-	if data, err := os.ReadFile("releases.json"); err == nil {
-		json.Unmarshal(data, &releases)
-		slog.Info("found releases", "count", len(releases))
-	}
 	dir, err := os.ReadDir(path)
 	if err != nil {
 		return nil, err
@@ -208,7 +203,6 @@ func load(path string) ([]Pages, error) {
 				Index:     j,
 				Source:    full,
 				Permalink: permalink,
-				Releases:  releases,
 			})
 		}
 		if len(pages) == 0 {
@@ -236,6 +230,12 @@ func fail(err error, msg string, args ...any) {
 }
 
 func SpecialPages() []*Page {
+	var releases []*github.RepositoryRelease
+	if data, err := os.ReadFile("releases.json"); err == nil {
+		json.Unmarshal(data, &releases)
+		slog.Info("found releases", "count", len(releases))
+	}
+
 	return []*Page{
 		{
 			Layout:      "page",
@@ -248,6 +248,13 @@ func SpecialPages() []*Page {
 			Title:       "Vince Analytics Blog",
 			Description: "Vince is a cloud native, self hosted, privacy-first alternative to google analytics",
 			Permalink:   "/blog",
+		},
+		{
+			Layout:      "start",
+			Title:       "Getting started with vince analytics",
+			Description: "Vince is a cloud native, self hosted, privacy-first alternative to google analytics",
+			Permalink:   "/getting-started",
+			Releases:    releases,
 		},
 	}
 }

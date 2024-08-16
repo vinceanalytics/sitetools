@@ -1,43 +1,30 @@
-{
-    "layout": "post",
-    "title": "Hello, World",
-    "date": "2024-08-12",
-    "permalink":"/blog/hello-world",
-    "author": {
-        "name": "Geofrey Ernest",
-        "twitter": "@gernesti"
-    }
-}
+{{define "main"}}
+<div class="container relative pb-12 lg:pb-16 xl:pb-20">
+    <div>
+        <h1 class="font-extrabold tracking-tight text-gray-900 leading-10 sm:text-4xl sm:leading-none md:text-5xl">
+            Getting started
+        </h1>
+    </div>
+    <div class="mt-8 prose">
 
+        <h2>Installation script</h2>
 
-Self hosting web analytics is challenging especially if you are on a budget and 
-only have a few sites to manage.
+        <pre><code>curl -fsSL https://vinceanalytics.com/install.sh | bash
+</code></pre>
 
+        <h3>Homebrew</h3>
 
-## Installation script
+        <pre><code>brew install vinceanalytics/tap/vince
+</code></pre>
 
-```
-curl -fsSL https://vinceanalytics.com/install.sh | bash
-```
+        <h2>Container image</h2>
 
-### Homebrew
+        <pre><code>docker pull ghcr.io/vinceanalytics/vince
+</code></pre>
 
-```
-brew install vinceanalytics/tap/vince
-```
+        <h2>Usage</h2>
 
-## Container image
-
-
-```
-docker pull ghcr.io/vinceanalytics/vince
-```
-
-
-## Usage 
-
-```
-Usage of vince:
+        <pre><code>Usage of vince:
   -acme
         Enables auto tls. When used make sure -acme.email and -acme.domain are set
   -acme.domain string
@@ -62,10 +49,14 @@ Usage of vince:
         tcp address to bind the server (default ":8080")
   -sys.interval duration
         Interval for collecting system stats (default 15m0s)
-```
+</code></pre>
 
-# Starting server
+        <h1>Starting server</h1>
 
-```
-vince
-```
+        <pre><code>vince
+</code></pre>
+
+    </div>
+</div>
+</div>
+{{end}}

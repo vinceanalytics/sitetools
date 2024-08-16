@@ -29,5 +29,6 @@ func Create() (pages, index Render) {
 	index["article"] = clone("templates/index/article.html")
 	index["page"] = clone("templates/index/page.html")
 	index["post"] = clone("templates/index/post.html")
+	index["start"] = clone("templates/index/start.html")
 	return
 }
