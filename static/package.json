@@ -3,13 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "css": "tailwindcss -i src/css/style.css -o ../data/assets/css/style.css --minify"
+    "css": "tailwindcss -i src/css/base.css -o ../data/assets/css/style.css"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.14",
     "tailwindcss": "^3.4.9"
   }
 }
