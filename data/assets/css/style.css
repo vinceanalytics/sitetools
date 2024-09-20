@@ -819,6 +819,10 @@ video {
   width: 50%;
 }
 
+.w-10 {
+  width: 2.5rem;
+}
+
 .w-44 {
   width: 11rem;
 }
@@ -1154,6 +1158,10 @@ video {
   padding-right: 2rem;
 }
 
+.pt-1 {
+  padding-top: 0.25rem;
+}
+
 .pt-10 {
   padding-top: 2.5rem;
 }
@@ -1182,6 +1190,10 @@ video {
   text-align: right;
 }
 
+.font-logo {
+  font-family: Red Hat Text;
+}
+
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -1190,6 +1202,10 @@ video {
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-\[34px\] {
+  font-size: 34px;
 }
 
 .text-base {
@@ -1259,6 +1275,10 @@ video {
 
 .leading-7 {
   line-height: 1.75rem;
+}
+
+.leading-9 {
+  line-height: 2.25rem;
 }
 
 .tracking-tight {
@@ -1465,6 +1485,11 @@ video {
 
 .dark\:hidden:is(.dark *) {
   display: none;
+}
+
+.dark\:text-white:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 @media (min-width: 640px) {

@@ -29,5 +29,6 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	w.Header().Set("content-type", "text/html")
 	tpl.Execute(w, map[string]any{})
 }
