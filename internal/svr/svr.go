@@ -30,5 +30,8 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("content-type", "text/html")
-	tpl.Execute(w, map[string]any{})
+	err = tpl.Execute(w, map[string]any{})
+	if err != nil {
+		log.Println(err)
+	}
 }
