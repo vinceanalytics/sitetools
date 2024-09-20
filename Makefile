@@ -1,6 +1,6 @@
 
 serve:
-	 go run main.go -s  in out/
+	 go run main.go
 release:
 	 go run main.go -s -r  in out/
 css:
