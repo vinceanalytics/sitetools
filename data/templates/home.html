@@ -40,9 +40,9 @@
             </div>
             <div class="w-56 flex justify-end">
                 <nav class="flex space-x-3 items-center">
-                    <a class="px-3 py-2 rounded-lg font-semibold text-sm bg-blue-600 border border-transparent text-white hover:bg-blue-700 focus:bg-blue-700 flex items-end space-x-1.5"
+                    <a class="px-3 py-2 rounded-lg font-semibold text-sm bg-indigo-600 border border-transparent text-white hover:bg-indigo-700 focus:bg-indigo-700 flex items-end space-x-1.5"
                         href="https://github.com/vinceanalytics/vince" target="_blank">
-                        <img src="/images/github-mark.svg" alt="" width="17" height="19" />
+                        <i class="ri-github-line" aria-hidden="true"></i>
                         <span class="mb-[-1.5px] font-semibold">Source</span>
                     </a>
                 </nav>
@@ -102,6 +102,41 @@
         </div>
     </header>
 
+    <section id="intro" class="bg-white overflow-x-hidden">
+        <div class="m-auto max-w-7xl px-4 pt-12 pb-20 flex flex-col xl:flex-row space-y-16 md:space-y-20 xl:space-y-0">
+            <div
+                class="flex flex-col xl:min-w-[44%] xl:justify-center space-y-8 text-center xl:text-left items-center xl:items-start">
+                <h2 class="max-w-lg text-3xl font-light xl:text-left text-gray-900">
+                    Save
+                    <span class="font-bold text-brand-pink">$$$</span>
+                    by self hosting your web analytics.
+                </h2>
+                <span class="text-lg text-gray-700 max-w-xl">
+                    Vince is a cost effective , self hosted , privacy friendly alternative to Google Analytics.
+                    Be GDPR, CCPA and PECR compliant with full control of your data while using few resources.
+                </span>
+                <nav class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-6">
+                    <a class="pl-2 pr-8 py-3 flex items-center rounded-xl bg-gray-900 text-gray-50" href="#install">
+                        <i class="ri-rocket-line px-4 text-3xl text-gray-300" aria-hidden="true"></i>
+                        <div class="flex flex-col">
+                            <span class="font-bold">Install Livebook</span>
+                            <span class="text-sm">Locally or on the cloud</span>
+                        </div>
+                    </a>
+                    <a class="pl-2 pr-8 py-3 flex items-center rounded-xl text-gray-700 border-2 border-gray-300"
+                        href="https://github.com/livebook-dev/livebook" target="_blank">
+                        <i class="ri-github-line px-4 text-3xl text-gray-400" aria-hidden="true"></i>
+                        <div class="flex flex-col">
+                            <span class="font-bold">Star us on GitHub</span>
+                            <span class="text-sm">and join our community</span>
+                        </div>
+                    </a>
+                </nav>
+            </div>
+            <Image class="xl:max-w-[70%] xl:ml-20 rounded-md custom-shadow-1" src={welcomeToLivebook} alt="Logo"
+                loading="eager" />
+        </div>
+    </section>
 </body>
 
 </html>
