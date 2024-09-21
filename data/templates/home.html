@@ -24,16 +24,32 @@
 </head>
 
 <body>
-    <header id="header" class="hidden md:block">
-        <div class="m-auto w-full max-w-7xl lg:flex items-center">
+    <header id="header" class="header pt-3">
+        <div class="m-auto w-full max-w-7xl hidden md:flex items-center">
             <a href="/" class="flex items-center px-2">
                 <img class="w-10" alt="vince Logo" src="/images/logo.png" />
                 <span
                     class="text-gray-900 dark:text-white font-logo text-[34px] leading-9 px-1 pt-1 font-light">vince</span>
             </a>
+            <div class="flex-grow flex items-center justify-center">
+                <nav class="flex space-x-12 text-gray-600 dark:text-gray-200">
+                    <a href="/#features" class="border-b-2 border-gray-600">Features</a>
+                    <a href="/#guides" class="border-b-2 border-gray-600">Guides</a>
+                    <a href="/#pricing" class="border-b-2 border-gray-600">Pricing</a>
+                </nav>
+            </div>
+            <div class="w-56 flex justify-end">
+                <nav class="flex space-x-3 items-center">
+                    <a class="px-3 py-2 rounded-lg font-semibold text-sm bg-blue-600 border border-transparent text-white hover:bg-blue-700 focus:bg-blue-700 flex items-end space-x-1.5"
+                        href="https://github.com/vinceanalytics/vince" target="_blank">
+                        <img src="/images/github-mark.svg" alt="" width="17" height="19" />
+                        <span class="mb-[-1.5px] font-semibold">Source</span>
+                    </a>
+                </nav>
+            </div>
         </div>
     </header>
-    <header id="header-mobile" class="relative md:hidden" x-data="{mobileNav: false}">
+    <header id="header-mobile" class="pt-3 relative md:hidden" x-data="{mobileNav: false}">
         <div class="flex items-center justify-between">
             <a href="/" class="flex items-center px-2">
                 <img class="w-9" alt="vince Logo" src="/images/logo.png" />
@@ -77,8 +93,7 @@
                         <a href="/#pricing"
                             class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">Pricing</a>
                     </div>
-                    <a href="https://github.com/vinceanalytics/vince"
-                    target="_blank"
+                    <a href="https://github.com/vinceanalytics/vince" target="_blank"
                         class="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100 hover:text-indigo-700 focus:outline-none focus:bg-gray-100 focus:text-indigo-700 transition duration-150 ease-in-out">
                         Source
                     </a>
