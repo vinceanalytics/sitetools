@@ -38,6 +38,7 @@
                 <nav class="flex space-x-12 text-gray-600 dark:text-gray-200">
                     <a href="/#features" class="border-b-2 border-gray-600">Features</a>
                     <a href="/#guides" class="border-b-2 border-gray-600">Guides</a>
+                    <a href="/blog" class="border-b-2 border-gray-600">Blog</a>
                     <a href="/#pricing" class="border-b-2 border-gray-600">Pricing</a>
                 </nav>
             </div>
@@ -93,9 +94,11 @@
                             class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">Features</a>
                         <a href="/#guides"
                             class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">Guides</a>
+                        <a href="/blog"
+                            class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">Blog</a>
                         <a href="/#pricing"
                             class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">Pricing</a>
-                    </div>
+                        </div>
                     <a href="https://github.com/vinceanalytics/vince" target="_blank"
                         class="block w-full px-5 py-3 text-center font-medium text-rose-600 bg-gray-50 hover:bg-gray-100 hover:text-rose-700 focus:outline-none focus:bg-gray-100 focus:text-rose-700 transition duration-150 ease-in-out">
                         Source
@@ -106,7 +109,7 @@
     </header>
 {{end}}
 
-{{define "footer"}}
+{{define "guides"}}
 <section id="guides" class="bg-gray-100"></section>
     <div class="m-auto max-w-7xl px-4 pt-10 md:pt-20 flex flex-col items-center">
         <div class="mx-auto flex max-w-screen-xl flex-col">
@@ -129,6 +132,9 @@
         </div>
     </div>
 </section>
+{{end}}
+
+{{define "footer"}}
 <footer class="border-t-[2px] border-rose-100 bg-rose-200 p-4 md:p-12">
     <div class="container py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div class="xl:grid xl:grid-cols-3 xl:gap-8">
@@ -208,6 +214,7 @@
         {{end}}
     </div>
 </section>
+{{template "guides" .}}
 {{template "footer" .}}
 {{end}}
 
@@ -236,5 +243,45 @@
             </article>
     </main>
 </section>
+{{template "guides" .}}
+{{template "footer" .}}
+{{end}}
+
+{{define "blog"}}
+{{template "head" .}}
+<section class="m-auto min-h-[70%] max-w-screen-lg px-[var(--horizontal-padding)] pb-20">
+    <div class="h-12 md:h-20"></div>
+    <h1 class="text-5xl font-extrabold mb-2">Vince Blog</h1>
+    <div class="ml-[-18px] w-screen lg:w-full">
+        {{range .blog}}
+        <a href="{{.Link}}" class="block p-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <div class="cursor w-full border-gray-300 bg-gray-50 filter-none hover:bg-gray-200 md:flex lg:rounded-lg">
+                <div
+                    class="BlogCardContents mx-[18px] flex flex-[3] flex-col justify-between border-t border-gray-200 leading-normal">
+                    <div class="h-[18px]"></div>
+                    <div class="mb-4">
+                        <div class="mb-1 text-2xl font-bold text-gray-900">{{.Title}}</div>
+                        <div class="prose">
+                            {{.Exerpt}}
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="text-sm">
+                            <p class="leading-none"><span class="text-gray-600">{{.Author.Name}}</span> · <span
+                                    class="text-gray-600">{{.FormatDate}}</span></p>
+                        </div>
+                    </div>
+                    <div class="h-[18px]"></div>
+                </div>
+            </div>
+        </a>
+        {{end}}
+    </div>
+</section>
+{{template "footer" .}}
+{{end}}
+
+{{define "post"}}
+{{template "head" .}}
 {{template "footer" .}}
 {{end}}

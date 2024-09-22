@@ -90,3 +90,15 @@
     background-repeat: no-repeat;
   }
 }
+:root{
+  --horizontal-padding: 3rem;
+}
+
+
+@media (max-width: 1024px) {
+  :root {
+    --horizontal-padding: 16px;
+    --vertical-padding: 2rem;
+    --line-height: 1.6;
+  }
+}

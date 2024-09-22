@@ -1168,6 +1168,11 @@ video {
   margin: auto;
 }
 
+.mx-\[18px\] {
+  margin-left: 18px;
+  margin-right: 18px;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -1186,6 +1191,18 @@ video {
   margin-bottom: 0px;
 }
 
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
 .mb-\[-1\.5px\] {
   margin-bottom: -1.5px;
 }
@@ -1196,6 +1213,10 @@ video {
 
 .mb-\[3px\] {
   margin-bottom: 3px;
+}
+
+.ml-\[-18px\] {
+  margin-left: -18px;
 }
 
 .ml-\[1px\] {
@@ -1262,6 +1283,10 @@ video {
   height: 18px;
 }
 
+.min-h-\[70\%\] {
+  min-height: 70%;
+}
+
 .w-10 {
   width: 2.5rem;
 }
@@ -1290,6 +1315,10 @@ video {
   width: 100%;
 }
 
+.w-screen {
+  width: 100vw;
+}
+
 .max-w-7xl {
   max-width: 80rem;
 }
@@ -1302,12 +1331,20 @@ video {
   max-width: none;
 }
 
+.max-w-screen-lg {
+  max-width: 1024px;
+}
+
 .max-w-screen-xl {
   max-width: 1280px;
 }
 
 .max-w-xl {
   max-width: 36rem;
+}
+
+.flex-\[3\] {
+  flex: 3;
 }
 
 .flex-grow {
@@ -1462,6 +1499,10 @@ video {
 
 .border-b-2 {
   border-bottom-width: 2px;
+}
+
+.border-t {
+  border-top-width: 1px;
 }
 
 .border-t-\[2px\] {
@@ -1676,9 +1717,19 @@ video {
   font-family: Red Hat Text;
 }
 
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
 }
 
 .text-\[34px\] {
@@ -1707,6 +1758,10 @@ video {
 
 .font-bold {
   font-weight: 700;
+}
+
+.font-extrabold {
+  font-weight: 800;
 }
 
 .font-light {
@@ -1741,6 +1796,10 @@ video {
   line-height: 1;
 }
 
+.leading-normal {
+  line-height: 1.5;
+}
+
 .leading-tight {
   line-height: 1.25;
 }
@@ -1767,11 +1826,6 @@ video {
 .text-gray-400 {
   --tw-text-opacity: 1;
   color: rgb(145 164 183 / var(--tw-text-opacity));
-}
-
-.text-gray-50 {
-  --tw-text-opacity: 1;
-  color: rgb(248 250 252 / var(--tw-text-opacity));
 }
 
 .text-gray-500 {
@@ -1821,10 +1875,20 @@ video {
   opacity: 1;
 }
 
+.shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .shadow-md {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.filter-none {
+  filter: none;
 }
 
 .transition {
@@ -1857,6 +1921,18 @@ video {
 
 .custom-shadow-1 {
   box-shadow: 0 15px 80px -10px rgba(13, 24, 41, 0.25);
+}
+
+:root{
+  --horizontal-padding: 3rem;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --horizontal-padding: 16px;
+    --vertical-padding: 2rem;
+    --line-height: 1.6;
+  }
 }
 
 .dark\:prose-invert:is(.dark *) {
@@ -1892,6 +1968,11 @@ video {
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(240 245 249 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-200:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(225 232 240 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-gray-50:hover {
@@ -1976,6 +2057,11 @@ video {
   border-color: rgb(97 117 138 / var(--tw-border-opacity));
 }
 
+.dark\:border-gray-700:is(.dark *) {
+  --tw-border-opacity: 1;
+  border-color: rgb(48 66 84 / var(--tw-border-opacity));
+}
+
 .dark\:border-gray-800:is(.dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(28 42 58 / var(--tw-border-opacity));
@@ -2028,6 +2114,11 @@ video {
 .hover\:dark\:border-pink-900:is(.dark *):hover {
   --tw-border-opacity: 1;
   border-color: rgb(131 24 67 / var(--tw-border-opacity));
+}
+
+.dark\:hover\:bg-gray-700:hover:is(.dark *) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(48 66 84 / var(--tw-bg-opacity));
 }
 
 .dark\:hover\:bg-gray-800:hover:is(.dark *) {
@@ -2103,6 +2194,10 @@ video {
 
   .lg\:max-w-\[1200px\] {
     max-width: 1200px;
+  }
+
+  .lg\:rounded-lg {
+    border-radius: 0.5rem;
   }
 
   .lg\:px-8 {

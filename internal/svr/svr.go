@@ -30,6 +30,7 @@ func Hand() *http.ServeMux {
 	h.Handle("/images/", staticFS)
 	h.Handle("/js/", staticFS)
 	registerGuides(h)
+	registerBlog(h)
 	return h
 }
 
