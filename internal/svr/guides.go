@@ -10,7 +10,6 @@ import (
 	"path/filepath"
 
 	"github.com/gomarkdown/markdown"
-	"github.com/vinceanalytics/sitetools/data"
 )
 
 var guides []*Guide
@@ -51,16 +50,13 @@ func renderPage(guide *Guide, page *Page) http.HandlerFunc {
 	}
 	content := template.HTML(markdown.ToHTML(md, nil, nil))
 	var o bytes.Buffer
-	tpl, err := template.ParseFS(data.Templates, "templates/page.html")
-	if err != nil {
-		log.Fatal("parsing page template", src, err)
-	}
-	err = tpl.Execute(&o, map[string]any{
-		"page":    page,
-		"guide":   guide,
-		"content": content,
-		"footer":  footer(),
-	})
+
+	err = global.ExecuteTemplate(&o, "page", baseContext(func(m map[string]any) {
+		m["page"] = page
+		m["title"] = page.Title
+		m["guide"] = guide
+		m["content"] = content
+	}))
 	if err != nil {
 		log.Fatal("rendering page template", src, err)
 	}
@@ -68,17 +64,4 @@ func renderPage(guide *Guide, page *Page) http.HandlerFunc {
 		w.Header().Set("content-type", "text/html")
 		w.Write(o.Bytes())
 	})
-}
-
-func guideIndex() template.HTML {
-	tpl, err := template.ParseFS(data.Templates, "templates/guides.html")
-	if err != nil {
-		log.Fatal("parsing guides template", err)
-	}
-	var o bytes.Buffer
-	err = tpl.Execute(&o, guides)
-	if err != nil {
-		log.Fatal("rendering guides template", err)
-	}
-	return template.HTML(o.String())
 }

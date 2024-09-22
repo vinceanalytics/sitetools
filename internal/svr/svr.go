@@ -14,7 +14,8 @@ import (
 )
 
 var (
-	root = flag.String("root", "", "")
+	root   = flag.String("root", "", "")
+	global = template.Must(template.ParseFS(data.Templates, "templates/global.html"))
 )
 
 func Hand() *http.ServeMux {
@@ -39,11 +40,6 @@ type Feature struct {
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
-	tpl, err := template.ParseFS(data.Templates, "templates/home.html")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
 	w.Header().Set("content-type", "text/html")
 	var f []Feature
 	featureFile := filepath.Join(*root, "features.json")
@@ -55,13 +51,22 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatalf("failed decoding features file %s %v", featureFile, err)
 	}
-	err = tpl.Execute(w, map[string]any{
-		"features": f,
-		"footer":   footer(),
-	})
+	err = global.ExecuteTemplate(w, "home", baseContext(func(m map[string]any) {
+		m["features"] = f
+	}))
 	if err != nil {
 		log.Println("rendering home page", err)
 	}
+}
+
+func baseContext(f ...func(map[string]any)) map[string]any {
+	a := map[string]any{
+		"guides": guides,
+	}
+	for i := range f {
+		f[i](a)
+	}
+	return a
 }
 
 func Links() []string {
