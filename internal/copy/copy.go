@@ -3,6 +3,7 @@ package copy
 import (
 	"errors"
 	"fmt"
+	"io"
 	"io/fs"
 	"os"
 	"path/filepath"
@@ -13,12 +14,17 @@ import (
 // Copies all assets to dst
 func Copy(dst string) error {
 	os.RemoveAll(dst)
-	err := fs.WalkDir(data.Assets, ".", func(path string, d fs.DirEntry, err error) error {
+	sub, _ := fs.Sub(data.Assets, "assets")
+	err := fs.WalkDir(sub, ".", func(path string, d fs.DirEntry, _ error) error {
 		dstPath := filepath.Join(dst, path)
 		if d.IsDir() {
 			return os.MkdirAll(dstPath, 0755)
 		}
-		data, err := data.Assets.ReadFile(path)
+		f, err := sub.Open(path)
+		if err != nil {
+			return err
+		}
+		data, err := io.ReadAll(f)
 		if err != nil {
 			return err
 		}
