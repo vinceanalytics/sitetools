@@ -63,3 +63,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		log.Println("rendering home page", err)
 	}
 }
+
+func Links() []string {
+	return []string{"/"}
+}
