@@ -57,7 +57,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	}
 	err = tpl.Execute(w, map[string]any{
 		"features": f,
-		"guides":   guideIndex(),
+		"footer":   footer(),
 	})
 	if err != nil {
 		log.Println("rendering home page", err)
