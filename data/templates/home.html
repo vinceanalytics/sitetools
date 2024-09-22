@@ -116,7 +116,8 @@
                     Be GDPR, CCPA and PECR compliant with full control of your data while using few resources.
                 </span>
                 <nav class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-6">
-                    <a class="pl-2 pr-8 py-3 flex items-center rounded-xl bg-indigo-900 text-gray-50" href="/guide/deployment/local"">
+                    <a class="pl-2 pr-8 py-3 flex items-center rounded-xl bg-indigo-900 text-gray-50"
+                        href="/guide/deployment/local">
                         <i class="ri-rocket-line px-4 text-3xl text-gray-300" aria-hidden="true"></i>
                         <div class="flex flex-col">
                             <span class="font-bold">Get started</span>
@@ -145,8 +146,8 @@
                 <div
                     class="mb-[12px] break-inside-avoid-column rounded-[4px] border-[2px] border-gray-200 from-pink-200/50 to-purple-200/50 px-[20px] py-[16px] text-gray-800 hover:border-pink-900 hover:bg-gradient-to-br  hover:text-pink-900 dark:border-gray-800  dark:from-pink-500/10 dark:to-purple-500/10 dark:text-gray-400 hover:dark:border-pink-900 hover:dark:text-gray-100">
                     <div class="flex flex-row justify-between p-0 pb-3 text-xl font-semibold">
-                        <p>{{.Title}}</p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                            fill="currentColor" aria-hidden="true" data-slot="icon" class="mr-[-6px] h-6 w-6">
+                        <p>{{.Title}}</p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                            aria-hidden="true" data-slot="icon" class="mr-[-6px] h-6 w-6">
                             <path fill-rule="evenodd"
                                 d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                                 clip-rule="evenodd"></path>
@@ -158,6 +159,11 @@
                 </div>
             </a>
             {{end}}
+        </div>
+    </section>
+    <section id="guides" class="bg-gray-100">
+        <div class="m-auto max-w-7xl px-4 pt-10 md:pt-20 flex flex-col items-center">
+            {{.guides}}
         </div>
     </section>
 </body>

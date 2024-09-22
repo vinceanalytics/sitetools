@@ -28,6 +28,7 @@ func Hand() *http.ServeMux {
 	h.Handle("/css/", staticFS)
 	h.Handle("/images/", staticFS)
 	h.Handle("/js/", staticFS)
+	registerGuides(h)
 	return h
 }
 
@@ -56,8 +57,9 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	}
 	err = tpl.Execute(w, map[string]any{
 		"features": f,
+		"guides":   guideIndex(),
 	})
 	if err != nil {
-		log.Println(err)
+		log.Println("rendering home page", err)
 	}
 }
