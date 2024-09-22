@@ -1,6 +1,6 @@
 
 serve:
-	 go run main.go
+	 go run main.go -root=vince
 release:
 	 go run main.go -s -r  in out/
 css:
