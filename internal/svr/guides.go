@@ -47,7 +47,17 @@ func renderGuide() http.HandlerFunc {
 	var o bytes.Buffer
 	err := global.ExecuteTemplate(&o, "guide", baseContext(func(m map[string]any) {
 		m["guides"] = guides
-		m["title"] = "vince | Guides"
+		m["title"] = "Guides | Learn vince by example"
+		m["meta"] = []Meta{
+			{"description", "Useful tips and samples for working with vince"},
+			{"og:site_name", "Vince"},
+			{"og:title", "Guides | Learn vince by example"},
+			{"og:url", "https://vinceanalytics.com/guides"},
+			{"og:image", "https://vinceanalytics.com/images/logo.png"},
+			{"og:locale", "en_US"},
+			{"og:type", "website"},
+			{"twitter:card", "summary_large_image"},
+		}
 	}))
 	if err != nil {
 		log.Fatal("rendering guide template", err)
