@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	root   = flag.String("root", "", "")
+	root   = flag.String("root", ".", "")
 	global = template.Must(template.ParseFS(data.Templates, "templates/global.html"))
 )
 
