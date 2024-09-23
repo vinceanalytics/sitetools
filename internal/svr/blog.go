@@ -89,7 +89,18 @@ func renderBlog() http.HandlerFunc {
 	var o bytes.Buffer
 	err := global.ExecuteTemplate(&o, "blog", baseContext(func(m map[string]any) {
 		m["blog"] = blog
-		m["title"] = "vince | Blog"
+		m["title"] = "Blog | Vince"
+		m["meta"] = []Meta{
+			{"description", "Blog posts about vince the cloud native web analytics server"},
+			{"og:site_name", "Vince"},
+			{"og:title", "Blog | Vince"},
+			{"og:url", "https://vinceanalytics.com/blog"},
+			{"og:image", "https://vinceanalytics.com/images/logo.png"},
+			{"og:locale", "en_US"},
+			{"og:type", "website"},
+			{"twitter:site", "@gernesti"},
+			{"twitter:card", "summary_large_image"},
+		}
 	}))
 	if err != nil {
 		log.Fatal("rendering blog template", err)

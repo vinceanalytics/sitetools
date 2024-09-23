@@ -56,6 +56,7 @@ func renderGuide() http.HandlerFunc {
 			{"og:image", "https://vinceanalytics.com/images/logo.png"},
 			{"og:locale", "en_US"},
 			{"og:type", "website"},
+			{"twitter:site", "@gernesti"},
 			{"twitter:card", "summary_large_image"},
 		}
 	}))
