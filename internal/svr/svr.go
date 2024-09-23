@@ -70,6 +70,7 @@ func baseContext(f ...func(map[string]any)) map[string]any {
 	return a
 }
 
-func Links() []string {
-	return []string{"/"}
+func Links() (o []string) {
+	o = []string{"/", "/blog", "/guides"}
+	return
 }
