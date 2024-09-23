@@ -26,6 +26,7 @@ type Post struct {
 	Date    Date          `json:"date"`
 	Content template.HTML `json:"-"`
 	Exerpt  template.HTML `json:"-"`
+	Summary string        `json:"-"`
 }
 
 type Date struct {
@@ -64,6 +65,7 @@ func registerBlog(m *http.ServeMux) {
 		}
 		p.Content = template.HTML(markdown.ToHTML(md, nil, nil))
 		ex, _, _ := bytes.Cut(md, []byte("\n\n"))
+		p.Summary = string(ex)
 		p.Exerpt = template.HTML(markdown.ToHTML(ex, nil, nil))
 		m.HandleFunc(p.Link, renderPost(p))
 	}
@@ -74,7 +76,19 @@ func renderPost(page *Post) http.HandlerFunc {
 	var o bytes.Buffer
 	err := global.ExecuteTemplate(&o, "post", baseContext(func(m map[string]any) {
 		m["post"] = page
-		m["title"] = page.Title
+		m["title"] = page.Title + " | Vince Blog "
+		m["meta"] = []Meta{
+			{"description", page.Summary},
+			{"og:site_name", "Vince"},
+			{"og:title", page.Title},
+			{"og:description", page.Summary},
+			{"og:url", "https://vinceanalytics.com" + page.Link},
+			{"og:image", "https://vinceanalytics.com/images/logo.png"},
+			{"og:locale", "en_US"},
+			{"og:type", "article"},
+			{"twitter:site", "@gernesti"},
+			{"twitter:card", "summary_large_image"},
+		}
 	}))
 	if err != nil {
 		log.Fatal("rendering post template", page.Link, err)
