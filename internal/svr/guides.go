@@ -83,6 +83,16 @@ func renderPage(guide *Guide, page *Page) http.HandlerFunc {
 		m["title"] = page.Title
 		m["guide"] = guide
 		m["content"] = content
+		m["meta"] = []Meta{
+			{"og:site_name", "Vince"},
+			{"og:title", page.Title},
+			{"og:url", "https://vinceanalytics.com" + page.Link},
+			{"og:image", "https://vinceanalytics.com/images/logo.png"},
+			{"og:locale", "en_US"},
+			{"og:type", "website"},
+			{"twitter:site", "@gernesti"},
+			{"twitter:card", "summary_large_image"},
+		}
 	}))
 	if err != nil {
 		log.Fatal("rendering page template", src, err)
