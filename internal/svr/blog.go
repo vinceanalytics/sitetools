@@ -20,15 +20,30 @@ type Post struct {
 	Source string `json:"source"`
 	Link   string `json:"link"`
 	Author struct {
-		Name string `json:"name"`
+		Name   string `json:"name"`
+		Social string `json:"social"`
 	} `json:"author"`
-	Date    time.Time     `json:"date"`
+	Date    Date          `json:"date"`
 	Content template.HTML `json:"-"`
 	Exerpt  template.HTML `json:"-"`
 }
 
+type Date struct {
+	time.Time
+}
+
+func (ts *Date) UnmarshalJSON(data []byte) error {
+	var s string
+	err := json.Unmarshal(data, &s)
+	if err != nil {
+		return err
+	}
+	ts.Time, err = time.Parse(time.DateOnly, s)
+	return err
+}
+
 func (p *Post) FormatDate() string {
-	return p.Date.Format("Jan 02, 2006")
+	return p.Date.Format("January 02, 2006")
 }
 
 func registerBlog(m *http.ServeMux) {

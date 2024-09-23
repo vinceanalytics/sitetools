@@ -283,5 +283,16 @@
 
 {{define "post"}}
 {{template "head" .}}
+<section class="px-[var(--horizontal-padding)] pb-20 ">
+    <div class="h-12 md:h-20"></div>
+    <div class="prose ml-auto mr-auto w-full max-w-screen-md dark:prose-invert sm:mx-auto">
+        <h1 class="mb-0 !border-b-0 !pb-0">{{.post.Title}}</h1>
+        <hr class="m-0" style="margin:8px 0px 5px 0px">
+        <div class="mb-0 mt-1 flex flex-col ite<ms-start sm:flex-row"><div class="leading-snug sm:leading-[34px]"><a href="{{.post.Author.Social}}" class="no-underline hover:underline">{{.post.Author.Name}}</a><span class=""></span><span class="px-[10px]"> · </span><span class="m-0 font-normal text-neutral-800/50">{{.post.FormatDate}}</span></div><span class="flex-1"></span></div>
+        <article>
+            {{.post.Content}}
+        </article>
+    </div>
+</section>
 {{template "footer" .}}
 {{end}}
