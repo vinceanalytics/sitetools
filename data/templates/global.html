@@ -37,7 +37,7 @@
             <div class="flex-grow flex items-center justify-center">
                 <nav class="flex space-x-12 text-gray-600 dark:text-gray-200">
                     <a href="/#features" class="border-b-2 border-gray-600">Features</a>
-                    <a href="/#guides" class="border-b-2 border-gray-600">Guides</a>
+                    <a href="/guides" class="border-b-2 border-gray-600">Guides</a>
                     <a href="/blog" class="border-b-2 border-gray-600">Blog</a>
                     <a href="/#pricing" class="border-b-2 border-gray-600">Pricing</a>
                 </nav>
@@ -92,7 +92,7 @@
                     <div class="px-2 pt-2 pb-3">
                         <a href="/#features"
                             class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">Features</a>
-                        <a href="/#guides"
+                        <a href="/guides"
                             class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">Guides</a>
                         <a href="/blog"
                             class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">Blog</a>
@@ -276,6 +276,35 @@
             </div>
         </a>
         {{end}}
+    </div>
+</section>
+{{template "footer" .}}
+{{end}}
+
+{{define "guide"}}
+{{template "head" .}}
+<section class="m-auto min-h-[70%] max-w-screen-lg px-[var(--horizontal-padding)] pb-20">
+    <div class="h-12 md:h-20"></div>
+    <h1 class="text-5xl font-extrabold mb-2">Guides</h1>
+    <div class="m-auto max-w-7xl px-4 pt-10 md:pt-20 flex flex-col items-center"></div>
+        <div class="mx-auto flex max-w-screen-xl flex-col">
+            <div class="gap-[25px] text-lg text-gray-700 dark:text-gray-400 md:columns-2 lg:w-full xl:columns-3">
+                {{range .guides}}
+                <div class="break-inside-avoid pb-[25px]">
+                    <p class="mb-[12px] rounded bg-gray-200 py-[1px] text-center text-lg dark:bg-gray-800"
+                        style="font-variant:all-petite-caps">{{.Section}}</p>
+                    {{range .Pages}}
+                    <p class="py-[4px] leading-tight">
+                        <a href="{{.Link}}"
+                            class="text-pink-800 visited:text-pink-900 hover:underline dark:text-gray-400 dark:visited:text-gray-400">
+                            {{.Title}}
+                        </a>
+                    </p>
+                    {{end}}
+                </div>
+                {{end}}
+            </div>
+        </div>
     </div>
 </section>
 {{template "footer" .}}

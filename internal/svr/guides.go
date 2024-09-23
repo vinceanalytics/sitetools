@@ -40,6 +40,22 @@ func registerGuides(m *http.ServeMux) {
 			m.HandleFunc(p.Link, renderPage(g, p))
 		}
 	}
+	m.HandleFunc("/guides", renderGuide())
+}
+
+func renderGuide() http.HandlerFunc {
+	var o bytes.Buffer
+	err := global.ExecuteTemplate(&o, "guide", baseContext(func(m map[string]any) {
+		m["guides"] = guides
+		m["title"] = "vince | Guides"
+	}))
+	if err != nil {
+		log.Fatal("rendering guide template", err)
+	}
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("content-type", "text/html")
+		w.Write(o.Bytes())
+	})
 }
 
 func renderPage(guide *Guide, page *Page) http.HandlerFunc {
