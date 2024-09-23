@@ -8,7 +8,7 @@
     <title>
         {{if .title}}{{.title}}{{else}}vince | Cloud-Native web analytics{{end}}
     </title>
-    {{range .meta}}
+    {{range .meta -}}
     <meta name="{{.Name}}" content="{{.Content}}">
     {{end}}
     <link rel="icon"

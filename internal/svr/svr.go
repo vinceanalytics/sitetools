@@ -77,5 +77,13 @@ type Meta struct {
 
 func Links() (o []string) {
 	o = []string{"/", "/blog", "/guides"}
+	for _, g := range guides {
+		for _, p := range g.Pages {
+			o = append(o, p.Link)
+		}
+	}
+	for _, p := range blog {
+		o = append(o, p.Link)
+	}
 	return
 }
