@@ -1662,11 +1662,6 @@ video {
   padding-bottom: 0.75rem;
 }
 
-.py-8 {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
 .py-\[16px\] {
   padding-top: 16px;
   padding-bottom: 16px;
@@ -2215,6 +2210,11 @@ video {
 
   .md\:p-12 {
     padding: 3rem;
+  }
+
+  .md\:py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 
   .md\:pt-20 {
