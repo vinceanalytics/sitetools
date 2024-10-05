@@ -41,7 +41,11 @@ func main() {
 			if w.StatusCode != http.StatusOK {
 				log.Fatal(w.Status, link)
 			}
-			o := filepath.Join(path, link, "index.html")
+			o := filepath.Join(path, link)
+			if filepath.Ext(o) == "" {
+				// if no extension it means it is a html file
+				o = filepath.Join(o, "index.html")
+			}
 			os.MkdirAll(filepath.Dir(o), 0755)
 			f, err := os.Create(o)
 			if err != nil {

@@ -8,6 +8,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path"
 	"path/filepath"
 
 	"github.com/vinceanalytics/sitetools/data"
@@ -80,6 +81,9 @@ func Links() (o []string) {
 	for _, g := range guides {
 		for _, p := range g.Pages {
 			o = append(o, p.Link)
+			for _, f := range p.Files {
+				o = append(o, path.Join(path.Dir(p.Link), f))
+			}
 		}
 	}
 	for _, p := range blog {

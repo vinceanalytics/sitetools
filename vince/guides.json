@@ -5,7 +5,8 @@
             {
                 "title":"Deploy vince locally",
                 "source":"/guides/deployment/local.md",
-                "link":"/guide/deployment/local"
+                "link":"/guide/deployment/local",
+                "files":["logo.png"]
             }
         ]
     }

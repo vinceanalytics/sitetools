@@ -14,3 +14,5 @@ You need latest go version installed `go1.23+`
 ```
 go install github.com/vinceanalytics/vince@latest
 ```
+
+![logo](logo.png)

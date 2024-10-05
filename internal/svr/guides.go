@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path"
 	"path/filepath"
 
 	"github.com/gomarkdown/markdown"
@@ -20,9 +21,10 @@ type Guide struct {
 }
 
 type Page struct {
-	Title  string `json:"title"`
-	Source string `json:"source"`
-	Link   string `json:"link"`
+	Title  string   `json:"title"`
+	Source string   `json:"source"`
+	Link   string   `json:"link"`
+	Files  []string `json:"files"`
 }
 
 func registerGuides(m *http.ServeMux) {
@@ -37,7 +39,7 @@ func registerGuides(m *http.ServeMux) {
 	}
 	for _, g := range guides {
 		for _, p := range g.Pages {
-			m.HandleFunc(p.Link, renderPage(g, p))
+			renderPage(m, g, p)
 		}
 	}
 	m.HandleFunc("/guides", renderGuide())
@@ -69,7 +71,7 @@ func renderGuide() http.HandlerFunc {
 	})
 }
 
-func renderPage(guide *Guide, page *Page) http.HandlerFunc {
+func renderPage(mx *http.ServeMux, guide *Guide, page *Page) {
 	src := filepath.Join(*root, page.Source)
 	md, err := os.ReadFile(src)
 	if err != nil {
@@ -97,8 +99,15 @@ func renderPage(guide *Guide, page *Page) http.HandlerFunc {
 	if err != nil {
 		log.Fatal("rendering page template", src, err)
 	}
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	mx.HandleFunc(page.Link, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("content-type", "text/html")
 		w.Write(o.Bytes())
-	})
+	}))
+	for _, name := range page.Files {
+		link := path.Join(path.Dir(page.Link), name)
+		file := filepath.Join(filepath.Dir(src), name)
+		mx.HandleFunc(link, func(w http.ResponseWriter, r *http.Request) {
+			http.ServeFile(w, r, file)
+		})
+	}
 }
