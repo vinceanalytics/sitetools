@@ -82,7 +82,7 @@ func Links() (o []string) {
 		for _, p := range g.Pages {
 			o = append(o, p.Link)
 			for _, f := range p.Files {
-				o = append(o, path.Join(path.Dir(p.Link), f))
+				o = append(o, path.Join(p.Link, f))
 			}
 		}
 	}
