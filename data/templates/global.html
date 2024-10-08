@@ -98,18 +98,18 @@
                             class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">Guides</a>
                         <a href="/blog"
                             class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50 transition duration-150 ease-in-out">Blog</a>
-                    <a href="https://github.com/vinceanalytics/vince" target="_blank"
-                        class="block w-full px-5 py-3 text-center font-medium text-rose-600 bg-gray-50 hover:bg-gray-100 hover:text-rose-700 focus:outline-none focus:bg-gray-100 focus:text-rose-700 transition duration-150 ease-in-out">
-                        Source
-                    </a>
+                        <a href="https://github.com/vinceanalytics/vince" target="_blank"
+                            class="block w-full px-5 py-3 text-center font-medium text-rose-600 bg-gray-50 hover:bg-gray-100 hover:text-rose-700 focus:outline-none focus:bg-gray-100 focus:text-rose-700 transition duration-150 ease-in-out">
+                            Source
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
     </header>
-{{end}}
+    {{end}}
 
-{{define "guides"}}
-<section id="guides" class="bg-gray-100"></section>
+    {{define "guides"}}
+    <section id="guides" class="bg-gray-100"></section>
     <div class="m-auto max-w-7xl px-4 pt-10 md:pt-20 flex flex-col items-center">
         <div class="mx-auto flex max-w-screen-xl flex-col">
             <div class="gap-[25px] text-lg text-gray-700 dark:text-gray-400 md:columns-2 lg:w-full xl:columns-3">
@@ -130,25 +130,26 @@
             </div>
         </div>
     </div>
-</section>
-{{end}}
+    </section>
+    {{end}}
 
-{{define "footer"}}
-<footer class="border-t-[2px] border-rose-100 bg-rose-200 p-4 md:p-12">
-    <div class="container py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-        <div class="xl:grid xl:grid-cols-3 xl:gap-8">
-            <div class="my-8 xl:my-0">
-                <h4 class="leading-5 font-semibold tracking-wider text-gray-300">
-                    <img src="/images/logo.png" class="inline-block w-44 mr-1" />
-                </h4>
-                <p class="mt-4  text-base leading-6">
-                    Made in Tanzania <span class="text-lg">🇹🇿</span><br />
-                </p>
+    {{define "footer"}}
+    <footer class="border-t-[2px] border-rose-100 bg-rose-200 p-4 md:p-12">
+        <div class="container py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+            <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+                <div class="my-8 xl:my-0">
+                    <h4 class="leading-5 font-semibold tracking-wider text-gray-300">
+                        <img src="/images/logo.png" class="inline-block w-44 mr-1" />
+                    </h4>
+                    <p class="mt-4  text-base leading-6">
+                        Made in Tanzania <span class="text-lg">🇹🇿</span><br />
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 </body>
+
 </html>
 {{end}}
 
@@ -156,8 +157,7 @@
 {{template "head" .}}
 <section id="intro" class="bg-white overflow-x-hidden">
     <div class="m-auto px-4 pt-12 pb-20 flex flex-col  space-y-16">
-        <div
-            class="flex flex-col   space-y-8 text-center  items-center">
+        <div class="flex flex-col   space-y-8 text-center  items-center">
             <h2 class="text-3xl font-light text-gray-900">
                 Cloud-Native web analytics for everyone
             </h2>
@@ -184,8 +184,10 @@
                 </a>
             </nav>
         </div>
-        <img class="rounded-md custom-shadow-1" src="/images/desktop.png" alt="Logo"
-            loading="eager" />
+        <div class="max-w-5xl mx-auto rounded">
+            <figure > <img src="/images/desktop.png"
+                    alt="Cloud-native web analytics for everyone"> </figure>
+        </div>
     </div>
 </section>
 <section id="features"
@@ -221,23 +223,23 @@
 <section class="px-[var(--horizontal-padding)] pb-20">
     <div class="h-12 md:h-20"></div>
     <main class="max-w prose mr-auto w-full max-w-none dark:prose-invert lg:max-w-[1200px] xl:ml-auto">
-        <p class="m-0 p-0 "><span  class="breadcrumb text-gray-500 no-underline">Guides</a><svg
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
-                data-slot="icon" class="mb-[3px] ml-[1px] inline h-[18px] w-[18px] text-gray-500">
-                <path fill-rule="evenodd"
-                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                    clip-rule="evenodd"></path>
-            </svg><span class="text-gray-500 no-underline">{{.guide.Section}}</span><svg
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
-                data-slot="icon" class="mb-[3px] ml-[1px] inline h-[18px] w-[18px] text-gray-500">
-                <path fill-rule="evenodd"
-                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                    clip-rule="evenodd"></path>
-            </svg></p>
-            <h1 class="mb-0 !border-b-0 border-gray-200 !pb-0 text-3xl ">{{.page.Title}}</h1>
-            <article class="prose mt-8">
-                {{.content}}
-            </article>
+        <p class="m-0 p-0 "><span class="breadcrumb text-gray-500 no-underline">Guides</a><svg
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+                    data-slot="icon" class="mb-[3px] ml-[1px] inline h-[18px] w-[18px] text-gray-500">
+                    <path fill-rule="evenodd"
+                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                        clip-rule="evenodd"></path>
+                </svg><span class="text-gray-500 no-underline">{{.guide.Section}}</span><svg
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+                    data-slot="icon" class="mb-[3px] ml-[1px] inline h-[18px] w-[18px] text-gray-500">
+                    <path fill-rule="evenodd"
+                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                        clip-rule="evenodd"></path>
+                </svg></p>
+        <h1 class="mb-0 !border-b-0 border-gray-200 !pb-0 text-3xl ">{{.page.Title}}</h1>
+        <article class="prose mt-8">
+            {{.content}}
+        </article>
     </main>
 </section>
 {{template "guides" .}}
@@ -251,7 +253,8 @@
     <h1 class="text-5xl font-extrabold mb-2">Vince Blog</h1>
     <div class="ml-[-18px] w-screen lg:w-full">
         {{range .blog}}
-        <a href="{{.Link}}" class="block p-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <a href="{{.Link}}"
+            class="block p-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             <div class="cursor w-full border-gray-300 bg-gray-50 filter-none hover:bg-gray-200 md:flex lg:rounded-lg">
                 <div
                     class="BlogCardContents mx-[18px] flex flex-[3] flex-col justify-between border-t border-gray-200 leading-normal">
@@ -284,24 +287,24 @@
     <div class="h-12 md:h-20"></div>
     <h1 class="text-5xl font-extrabold mb-2">Guides</h1>
     <div class="m-auto max-w-7xl px-4 pt-10 md:pt-20 flex flex-col items-center"></div>
-        <div class="mx-auto flex max-w-screen-xl flex-col">
-            <div class="gap-[25px] text-lg text-gray-700 dark:text-gray-400 md:columns-2 lg:w-full xl:columns-3">
-                {{range .guides}}
-                <div class="break-inside-avoid pb-[25px]">
-                    <p class="mb-[12px] rounded bg-gray-200 py-[1px] text-center text-lg dark:bg-gray-800"
-                        style="font-variant:all-petite-caps">{{.Section}}</p>
-                    {{range .Pages}}
-                    <p class="py-[4px] leading-tight">
-                        <a href="{{.Link}}"
-                            class="text-pink-800 visited:text-pink-900 hover:underline dark:text-gray-400 dark:visited:text-gray-400">
-                            {{.Title}}
-                        </a>
-                    </p>
-                    {{end}}
-                </div>
+    <div class="mx-auto flex max-w-screen-xl flex-col">
+        <div class="gap-[25px] text-lg text-gray-700 dark:text-gray-400 md:columns-2 lg:w-full xl:columns-3">
+            {{range .guides}}
+            <div class="break-inside-avoid pb-[25px]">
+                <p class="mb-[12px] rounded bg-gray-200 py-[1px] text-center text-lg dark:bg-gray-800"
+                    style="font-variant:all-petite-caps">{{.Section}}</p>
+                {{range .Pages}}
+                <p class="py-[4px] leading-tight">
+                    <a href="{{.Link}}"
+                        class="text-pink-800 visited:text-pink-900 hover:underline dark:text-gray-400 dark:visited:text-gray-400">
+                        {{.Title}}
+                    </a>
+                </p>
                 {{end}}
             </div>
+            {{end}}
         </div>
+    </div>
     </div>
 </section>
 {{template "footer" .}}
@@ -314,7 +317,13 @@
     <div class="prose ml-auto mr-auto w-full max-w-screen-md dark:prose-invert sm:mx-auto">
         <h1 class="mb-0 !border-b-0 !pb-0">{{.post.Title}}</h1>
         <hr class="m-0" style="margin:8px 0px 5px 0px">
-        <div class="mb-0 mt-1 flex flex-col ite<ms-start sm:flex-row"><div class="leading-snug sm:leading-[34px]"><a href="{{.post.Author.Social}}" class="no-underline hover:underline">{{.post.Author.Name}}</a><span class=""></span><span class="px-[10px]"> · </span><span class="m-0 font-normal text-neutral-800/50">{{.post.FormatDate}}</span></div><span class="flex-1"></span></div>
+        <div class="mb-0 mt-1 flex flex-col ite<ms-start sm:flex-row">
+            <div class="leading-snug sm:leading-[34px]"><a href="{{.post.Author.Social}}"
+                    class="no-underline hover:underline">{{.post.Author.Name}}</a><span class=""></span><span
+                    class="px-[10px]"> · </span><span
+                    class="m-0 font-normal text-neutral-800/50">{{.post.FormatDate}}</span></div><span
+                class="flex-1"></span>
+        </div>
         <article>
             {{.post.Content}}
         </article>
