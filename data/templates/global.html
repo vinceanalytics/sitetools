@@ -109,28 +109,29 @@
     {{end}}
 
     {{define "guides"}}
-    <section id="guides" class="bg-gray-100"></section>
-    <div class="m-auto max-w-7xl px-4 pt-10 md:pt-20 flex flex-col items-center">
-        <div class="mx-auto flex max-w-screen-xl flex-col">
-            <div class="gap-[25px] text-lg text-gray-700 dark:text-gray-400 md:columns-2 lg:w-full xl:columns-3">
-                {{range .guides}}
-                <div class="break-inside-avoid pb-[25px]">
-                    <p class="mb-[12px] rounded bg-gray-200 py-[1px] text-center text-lg dark:bg-gray-800"
-                        style="font-variant:all-petite-caps">{{.Section}}</p>
-                    {{range .Pages}}
-                    <p class="py-[4px] leading-tight">
-                        <a href="{{.Link}}"
-                            class="text-pink-800 visited:text-pink-900 hover:underline dark:text-gray-400 dark:visited:text-gray-400">
-                            {{.Title}}
-                        </a>
-                    </p>
+        <section id="guides" 
+        class="border-t-2px  mx-auto border-t-[2px] border-gray-800  px-[15px] py-[70px] md:px-16 lg:py-[120px]"
+        >
+            <div class="mx-auto flex max-w-screen-xl flex-col">
+                <div class="gap-[25px] text-lg text-gray-700 dark:text-gray-400 md:columns-2 lg:w-full xl:columns-3">
+                    {{range .guides}}
+                    <div class="break-inside-avoid pb-[25px]">
+                        <p class="mb-[12px] rounded bg-gray-200 py-[1px] text-center text-lg dark:bg-gray-800"
+                            style="font-variant:all-petite-caps">{{.Section}}</p>
+                        {{range .Pages}}
+                        <p class="py-[4px] leading-tight">
+                            <a href="{{.Link}}"
+                                class="text-pink-800 visited:text-pink-900 hover:underline dark:text-gray-400 dark:visited:text-gray-400">
+                                {{.Title}}
+                            </a>
+                        </p>
+                        {{end}}
+                    </div>
                     {{end}}
                 </div>
-                {{end}}
             </div>
-        </div>
-    </div>
-    </section>
+        </section>
+  
     {{end}}
 
     {{define "footer"}}
