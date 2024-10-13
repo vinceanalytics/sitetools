@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io/fs"
 	"log"
 	"net/http"
 	"os"
@@ -56,7 +57,36 @@ func main() {
 			w.Body.Close()
 			fmt.Println(link, "=>", o)
 		}
+		copyCharts(*svr.Root, path)
 		return
 	}
 	server.ListenAndServe()
+}
+
+func copyCharts(in, out string) {
+	src := filepath.Join(in, "charts")
+	filepath.Walk(src, func(path string, info fs.FileInfo, err error) error {
+
+		rel, _ := filepath.Rel(in, path)
+		dest := filepath.Join(out, rel)
+		if info.IsDir() {
+			os.MkdirAll(dest, 0755)
+			return nil
+		}
+		x, err := os.Create(dest)
+		if err != nil {
+			return err
+		}
+		defer x.Close()
+
+		y, err := os.Open(path)
+		if err != nil {
+			return err
+		}
+		defer y.Close()
+		x.ReadFrom(y)
+		fmt.Println(path, "=>", dest)
+		return nil
+	})
+
 }

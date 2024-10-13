@@ -15,7 +15,7 @@ import (
 )
 
 var (
-	root   = flag.String("root", ".", "")
+	Root   = flag.String("root", ".", "")
 	global = template.Must(template.ParseFS(data.Templates, "templates/global.html"))
 )
 
@@ -44,7 +44,7 @@ type Feature struct {
 func Home(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "text/html")
 	var f []Feature
-	featureFile := filepath.Join(*root, "features.json")
+	featureFile := filepath.Join(*Root, "features.json")
 	file, err := os.ReadFile(featureFile)
 	if err != nil {
 		log.Fatalf("failed reading features file %s %v", featureFile, err)

@@ -48,7 +48,7 @@ func (p *Post) FormatDate() string {
 }
 
 func registerBlog(m *http.ServeMux) {
-	blogPath := filepath.Join(*root, "blog.json")
+	blogPath := filepath.Join(*Root, "blog.json")
 	data, err := os.ReadFile(blogPath)
 	if err != nil {
 		log.Fatal("reading blog data", err)
@@ -58,7 +58,7 @@ func registerBlog(m *http.ServeMux) {
 		log.Fatal("decoding blog data", err)
 	}
 	for _, p := range blog {
-		src := filepath.Join(*root, p.Source)
+		src := filepath.Join(*Root, p.Source)
 		md, err := os.ReadFile(src)
 		if err != nil {
 			log.Fatal(src, err)

@@ -28,7 +28,7 @@ type Page struct {
 }
 
 func registerGuides(m *http.ServeMux) {
-	guidesPath := filepath.Join(*root, "guides.json")
+	guidesPath := filepath.Join(*Root, "guides.json")
 	data, err := os.ReadFile(guidesPath)
 	if err != nil {
 		log.Fatal("reading guide data", err)
@@ -72,7 +72,7 @@ func renderGuide() http.HandlerFunc {
 }
 
 func renderPage(mx *http.ServeMux, guide *Guide, page *Page) {
-	src := filepath.Join(*root, page.Source)
+	src := filepath.Join(*Root, page.Source)
 	md, err := os.ReadFile(src)
 	if err != nil {
 		log.Fatal(src, err)
