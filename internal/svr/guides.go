@@ -105,9 +105,6 @@ func renderPage(mx *http.ServeMux, guide *Guide, page *Page) {
 	}))
 	for _, name := range page.Files {
 		file := filepath.Join(filepath.Dir(src), name)
-		mx.HandleFunc(path.Join(path.Dir(page.Link), name), func(w http.ResponseWriter, r *http.Request) {
-			http.ServeFile(w, r, file)
-		})
 		mx.HandleFunc(path.Join(page.Link, name), func(w http.ResponseWriter, r *http.Request) {
 			http.ServeFile(w, r, file)
 		})
