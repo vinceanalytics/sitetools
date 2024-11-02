@@ -71,6 +71,8 @@ func renderGuide() http.HandlerFunc {
 	})
 }
 
+var seen = map[string]struct{}{}
+
 func renderPage(mx *http.ServeMux, guide *Guide, page *Page) {
 	src := filepath.Join(*Root, page.Source)
 	md, err := os.ReadFile(src)
@@ -103,8 +105,16 @@ func renderPage(mx *http.ServeMux, guide *Guide, page *Page) {
 		w.Header().Set("content-type", "text/html")
 		w.Write(o.Bytes())
 	}))
+
 	for _, name := range page.Files {
 		file := filepath.Join(filepath.Dir(src), name)
+		local := path.Join(filepath.Dir(page.Link), name)
+		if _, ok := seen[local]; !ok {
+			seen[local] = struct{}{}
+			mx.HandleFunc(local, func(w http.ResponseWriter, r *http.Request) {
+				http.ServeFile(w, r, file)
+			})
+		}
 		mx.HandleFunc(path.Join(page.Link, name), func(w http.ResponseWriter, r *http.Request) {
 			http.ServeFile(w, r, file)
 		})
