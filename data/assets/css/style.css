@@ -1561,11 +1561,6 @@ video {
   background-color: rgb(248 250 252 / var(--tw-bg-opacity));
 }
 
-.bg-gray-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(13 24 41 / var(--tw-bg-opacity));
-}
-
 .bg-gray-950 {
   --tw-bg-opacity: 1;
   background-color: rgb(3 7 18 / var(--tw-bg-opacity));
@@ -1851,11 +1846,6 @@ video {
   color: rgb(145 164 183 / var(--tw-text-opacity));
 }
 
-.text-gray-50 {
-  --tw-text-opacity: 1;
-  color: rgb(248 250 252 / var(--tw-text-opacity));
-}
-
 .text-gray-500 {
   --tw-text-opacity: 1;
   color: rgb(97 117 138 / var(--tw-text-opacity));
@@ -1910,12 +1900,6 @@ video {
 
 .opacity-100 {
   opacity: 1;
-}
-
-.shadow {
-  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .shadow-md {
@@ -1993,6 +1977,10 @@ video {
   color: rgb(131 24 67 );
 }
 
+.hover\:transform-none:hover {
+  transform: none;
+}
+
 .hover\:border-pink-900:hover {
   --tw-border-opacity: 1;
   border-color: rgb(131 24 67 / var(--tw-border-opacity));
@@ -2046,6 +2034,10 @@ video {
   text-decoration-line: underline;
 }
 
+.hover\:no-underline:hover {
+  text-decoration-line: none;
+}
+
 .focus\:bg-gray-100:focus {
   --tw-bg-opacity: 1;
   background-color: rgb(240 245 249 / var(--tw-bg-opacity));
@@ -2088,11 +2080,6 @@ video {
 .dark\:border-gray-500:is(.dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(97 117 138 / var(--tw-border-opacity));
-}
-
-.dark\:border-gray-700:is(.dark *) {
-  --tw-border-opacity: 1;
-  border-color: rgb(48 66 84 / var(--tw-border-opacity));
 }
 
 .dark\:border-gray-800:is(.dark *) {
@@ -2147,11 +2134,6 @@ video {
 .hover\:dark\:border-pink-900:is(.dark *):hover {
   --tw-border-opacity: 1;
   border-color: rgb(131 24 67 / var(--tw-border-opacity));
-}
-
-.dark\:hover\:bg-gray-700:hover:is(.dark *) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(48 66 84 / var(--tw-bg-opacity));
 }
 
 .dark\:hover\:bg-gray-800:hover:is(.dark *) {
@@ -2234,6 +2216,10 @@ video {
 }
 
 @media (min-width: 1024px) {
+  .lg\:w-2\/5 {
+    width: 40%;
+  }
+
   .lg\:w-full {
     width: 100%;
   }

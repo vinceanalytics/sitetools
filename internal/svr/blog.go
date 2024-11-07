@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/gomarkdown/markdown"
+	"github.com/gosimple/slug"
 )
 
 var blog []*Post
@@ -43,8 +44,52 @@ func (ts *Date) UnmarshalJSON(data []byte) error {
 	return err
 }
 
+func (ts *Date) MarshalJSON() ([]byte, error) {
+	return json.Marshal(ts.Format(time.DateOnly))
+}
+
 func (p *Post) FormatDate() string {
 	return p.Date.Format("January 02, 2006")
+}
+
+func NewBlog(title string) {
+	blogPath := filepath.Join(*Root, "blog.json")
+	data, err := os.ReadFile(blogPath)
+	if err != nil {
+		log.Fatal("reading blog data", err)
+	}
+	err = json.Unmarshal(data, &blog)
+	if err != nil {
+		log.Fatal("decoding blog data", err)
+	}
+	base := slug.Make(title)
+	source := filepath.Join(filepath.Dir(blogPath), "blog", base+".md")
+	os.MkdirAll(filepath.Dir(source), 0755)
+	err = os.WriteFile(source, []byte{}, 0600)
+	if err != nil {
+		log.Fatal("creating blog file", err)
+	}
+	src, _ := filepath.Rel(*Root, source)
+	blog = append([]*Post{
+		{
+			Title:  title,
+			Source: src,
+			Link:   "/blog/" + base,
+			Author: struct {
+				Name   string "json:\"name\""
+				Social string "json:\"social\""
+			}{
+				Name:   "Geofrey Ernest",
+				Social: "https://github.com/gernest",
+			},
+			Date: Date{Time: time.Now()},
+		},
+	}, blog...)
+	dt, _ := json.MarshalIndent(blog, "", "  ")
+	err = os.WriteFile(blogPath, dt, 0600)
+	if err != nil {
+		log.Fatal("updating blog metadata", err)
+	}
 }
 
 func registerBlog(m *http.ServeMux) {

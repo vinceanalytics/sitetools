@@ -20,6 +20,14 @@ var (
 
 func main() {
 	flag.Parse()
+	switch flag.Arg(0) {
+	case "blog":
+		title := flag.Arg(1)
+		if title != "" {
+			svr.NewBlog(title)
+		}
+		return
+	}
 	h := svr.Hand()
 	server := &http.Server{
 		Addr:    ":9090",

@@ -246,31 +246,10 @@
 {{template "head" .}}
 <section class="m-auto min-h-[70%] max-w-screen-lg px-[var(--horizontal-padding)] pb-20">
     <div class="h-12 md:h-20"></div>
-    <h1 class="text-5xl font-extrabold mb-2">Vince Blog</h1>
+    <h1 class="text-5xl font-extrabold mb-2">Blog</h1>
     <div class="ml-[-18px] w-screen lg:w-full">
         {{range .blog}}
-        <a href="{{.Link}}"
-            class="block p-2 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-            <div class="cursor w-full border-gray-300 bg-gray-50 filter-none hover:bg-gray-200 md:flex lg:rounded-lg">
-                <div
-                    class="BlogCardContents mx-[18px] flex flex-[3] flex-col justify-between border-t border-gray-200 leading-normal">
-                    <div class="h-[18px]"></div>
-                    <div class="mb-4">
-                        <div class="mb-1 text-2xl font-bold text-gray-900">{{.Title}}</div>
-                        <div class="prose">
-                            {{.Exerpt}}
-                        </div>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="text-sm">
-                            <p class="leading-none"><span class="text-gray-600">{{.Author.Name}}</span> · <span
-                                    class="text-gray-600">{{.FormatDate}}</span></p>
-                        </div>
-                    </div>
-                    <div class="h-[18px]"></div>
-                </div>
-            </div>
-        </a>
+        <a href="{{.Link}}" class=" no-underline hover:transform-none hover:no-underline"><div class="cursor w-full border-gray-300 bg-gray-50 filter-none hover:bg-gray-200 md:flex lg:rounded-lg"><div class="Contents mx-[18px] flex flex-[3] flex-col justify-between border-t border-gray-200 leading-normal"><div class="h-[18px]"></div><div class="mb-4"><div class="mb-1 text-2xl font-bold text-gray-900">{{.Title}}</div><p class="text-lg text-gray-700">{{.Exerpt}}</p></div><div class="flex items-center"><div class="text-sm"><p class="leading-none"><span class="text-gray-600">{{.Author.Name}}</span> · <span class="text-gray-600">{{.FormatDate}}</span></p></div></div><div class="h-[18px]"></div></div></div></a>
         {{end}}
     </div>
 </section>
