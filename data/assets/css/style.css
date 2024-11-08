@@ -2216,10 +2216,6 @@ video {
 }
 
 @media (min-width: 1024px) {
-  .lg\:w-2\/5 {
-    width: 40%;
-  }
-
   .lg\:w-full {
     width: 100%;
   }
